@@ -1,0 +1,325 @@
+type: collection.insomnia.rest/5.0
+name: Loja Spricio
+meta:
+  id: wrk_f9a513c540dd4074a9561a3dddd25ae5
+  created: 1760983840312
+  modified: 1760983840312
+  description: ""
+collection:
+  - name: Produtos
+    meta:
+      id: fld_ea12b3e4f39a41cd9bfd2a5e2412f911
+      created: 1761583739064
+      modified: 1761583845446
+      sortKey: -1761583739264
+      description: ""
+    children:
+      - url: localhost:8081/produtos
+        name: Seleciona Todos os Produtos
+        meta:
+          id: req_30142f837b9e4b09821720e326e5c8f8
+          created: 1760983864176
+          modified: 1761583881669
+          isPrivate: false
+          description: ""
+          sortKey: -1761583860617.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/produtos
+        name: Inserir um Novo Produto
+        meta:
+          id: req_c2d4dc1379c346369864b35558f61f71
+          created: 1760987076828
+          modified: 1761583879825
+          isPrivate: false
+          description: ""
+          sortKey: -1761583860605
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"descricao": "Mangá Souso no Frieren",
+            	"valor": 32.90
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/produtos/:idProduto
+        name: Selecionar Produto por ID
+        meta:
+          id: req_04f092d7c1a8427a9c2d5525247eb2a6
+          created: 1761564714351
+          modified: 1761591929843
+          isPrivate: false
+          description: ""
+          sortKey: -1761583860630
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: idProduto
+            value: ""
+      - url: localhost:8081/produtos/:idProduto
+        name: Modificar Produto por ID
+        meta:
+          id: req_cb323be264fd4980a492896dae26c4c9
+          created: 1761567902977
+          modified: 1761591937639
+          isPrivate: false
+          description: ""
+          sortKey: -1761583860592.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"descricao": "    ab",
+            	"valor": 43.50
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: idProduto
+            value: ""
+      - url: localhost:8081/produtos/:idProduto
+        name: Deletar Produto por ID
+        meta:
+          id: req_2eb5bd1cc0e149e8a35ae3be17286a22
+          created: 1761583853832
+          modified: 1761591946688
+          isPrivate: false
+          description: ""
+          sortKey: -1761583860580
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: idProduto
+            value: ""
+  - name: Clientes
+    meta:
+      id: fld_3b08f5c461224e888718fc3cd60851b6
+      created: 1761588323797
+      modified: 1761588323797
+      sortKey: -1761588323797
+      description: ""
+    children:
+      - url: localhost:8081/clientes/id/:idCliente
+        name: Selecionar Cliente por ID
+        meta:
+          id: req_8a2971bb46fd44d69754473fac347a77
+          created: 1761588327532
+          modified: 1761591900710
+          isPrivate: false
+          description: ""
+          sortKey: -1761588329929
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: idCliente
+            value: ""
+      - url: localhost:8081/clientes/cpf/:cpfCliente
+        name: Selecionar Cliente por CPF
+        meta:
+          id: req_7775cc45d5ac4841b545bb2d2d384374
+          created: 1761588367519
+          modified: 1761591907868
+          isPrivate: false
+          description: ""
+          sortKey: -1761587771266.625
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: cpfCliente
+            value: ""
+      - url: localhost:8081/clientes/
+        name: Selecionar Todos os Clientes
+        meta:
+          id: req_ead513c8ae7b4527a458a946ff4de90d
+          created: 1761588383434
+          modified: 1761588582458
+          isPrivate: false
+          description: ""
+          sortKey: -1761587212604.25
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/clientes/
+        name: Adicionar Cliente
+        meta:
+          id: req_160d99c2413b443ca42324c3973a5fea
+          created: 1761588465218
+          modified: 1761591236090
+          isPrivate: false
+          description: ""
+          sortKey: -1761588330029
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"cpfCliente": "12345678900",
+            	"nomeCliente": "Welligntom"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8081/clientes/:idCliente
+        name: Atualiza Cliente por ID
+        meta:
+          id: req_dbd866bf7925493d83108557287fa3e5
+          created: 1761590713439
+          modified: 1761591881807
+          isPrivate: false
+          description: ""
+          sortKey: -1761588330129
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"cpfCliente" : "12345678900",
+            	"nomeCliente" : "José"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: idCliente
+            value: ""
+      - url: localhost:8081/clientes/:idCliente
+        name: Deleta o Cliente por ID
+        meta:
+          id: req_6c2dfb367c474cc4b177320d17622220
+          created: 1761590769254
+          modified: 1761591875832
+          isPrivate: false
+          description: ""
+          sortKey: -1761588330229
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+        pathParameters:
+          - name: idCliente
+            value: ""
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_e51f8ecd140fb8e5df3e5dc9e3effa0eccd0b4a0
+    created: 1760983840335
+    modified: 1760983840335
+environments:
+  name: Base Environment
+  meta:
+    id: env_e51f8ecd140fb8e5df3e5dc9e3effa0eccd0b4a0
+    created: 1760983840324
+    modified: 1760983840324
+    isPrivate: false
