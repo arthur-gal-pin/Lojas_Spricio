@@ -1,10 +1,10 @@
 const pool = require('../config/db');
 
-const clienteModel ={
-    selecionarTodos: async () => {
-        const sql = 'SELECT * FROM clientes;';
+const clienteModel = {
+    selecionarTodos: async (idCliente) => {
+        const sql = idCliente ? 'SELECT * FROM clientes WHERE id_cliente=?;' : 'SELECT * FROM clientes;';
         const [rows] = await pool.query(sql);
-        return rows
+        return rows;
     },
     selecionarPorId: async (idCliente) => {
         const sql = 'SELECT * FROM clientes WHERE id_cliente=?;';
@@ -18,7 +18,7 @@ const clienteModel ={
         const [rows] = await pool.query(sql, values);
         return rows;
     },
-    selecionarPorCpfUpdate: async(cpfCliente, idCliente) => {
+    selecionarPorCpfUpdate: async (cpfCliente, idCliente) => {
         const sql = 'SELECT * FROM clientes WHERE cpf_cliente = ? AND id_cliente <> ?;';
         const values = [cpfCliente, idCliente];
         const [rows] = await pool.query(sql, values);
@@ -32,7 +32,7 @@ const clienteModel ={
         console.log(rows);
         return rows;
     },
-    updateCliente: async (idCliente,cpfCliente, nomeCLiente) => {
+    updateCliente: async (idCliente, cpfCliente, nomeCLiente) => {
         const sql = 'UPDATE clientes SET nome_cliente = ?, cpf_cliente = ? WHERE id_cliente = ?;';
         const values = [nomeCLiente, cpfCliente, idCliente];
         const [rows] = await pool.query(sql, values);

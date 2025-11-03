@@ -5,13 +5,13 @@ const clienteController = {
         try {
             const id = Number(req.query.id);
             if (!id) {
-                const resultado = await clienteModel.selecionarTodos();
+                const resultado = await clienteModel.selecionarTodos(id);
                 if (resultado.length === 0 || !resultado) {
                     return res.status(200).json({ message: "Não há nenhum cliente cadastrado na base de dados no momento." });
                 }
                 return res.status(200).json({ message: "Resultado dos dados listados:", data: resultado });
             } else {
-                if (!Number.isInteger(id)) {
+                if (!Number.isInteger(id) || id<=0) {
                     return res.status(400).json({ message: "Forneça um identificador (id) válido." });
                 }
                 const resultado = await clienteModel.selecionarPorId(id);
