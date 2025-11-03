@@ -3,28 +3,23 @@ const { clienteModel } = require('../models/clienteModel');
 const clienteController = {
     buscarTodosClientes: async (req, res) => {
         try {
-            const resultado = await clienteModel.selecionarTodos();
-            if (resultado.length === 0 || !resultado) {
-                res.status(200).json({ message: "Não há nenhum cliente cadastrado na base de dados no momento." });
+            const id = Number(req.query.id);
+            if (!id) {
+                const resultado = await clienteModel.selecionarTodos();
+                if (resultado.length === 0 || !resultado) {
+                    return res.status(200).json({ message: "Não há nenhum cliente cadastrado na base de dados no momento." });
+                }
+                return res.status(200).json({ message: "Resultado dos dados listados:", data: resultado });
+            } else {
+                if (!Number.isInteger(id)) {
+                    return res.status(400).json({ message: "Forneça um identificador (id) válido." });
+                }
+                const resultado = await clienteModel.selecionarPorId(id);
+                if (resultado.length === 0) {
+                    return res.status(404).json({ message: "O ID em questão não possui cliente algum cadastrado." });
+                }
+                return res.status(200).json({ message: "Resultado dos dados listados", data: resultado });
             }
-            res.status(200).json({ message: "Resultado dos dados listados:", data: resultado });
-
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ message: "Ocorreu um erro no servidor.", errorMessage: error.message });
-        }
-    },
-    buscarClientePorId: async (req, res) => {
-        try {
-            const id = Number(req.params.idCliente);
-            if (!id || !Number.isInteger(id)) {
-                return res.status(400).json({ message: "Forneça um identificador (id) válido." });
-            }
-            const resultado = await clienteModel.selecionarPorId(id);
-            if (resultado.length === 0) {
-                throw new Error({ message: "O ID em questão não possui cliente algum cadastrado." });
-            }
-            return res.status(200).json({ message: "Resultado dos dados listados", data: resultado });
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: "Ocorreu um erro no servidor.", errorMessage: error.message });
@@ -102,7 +97,7 @@ const clienteController = {
     excluirCliente: async (req, res) => {
         try {
             const id = Number(req.params.idCliente);
-            if (!id || id<=0 || isNaN(id) || !Number.isInteger(id)) {
+            if (!id || id <= 0 || isNaN(id) || !Number.isInteger(id)) {
                 res.status(400).json({ message: "Você deve inserir um número inteiro para campo de ID." });
             }
             const clienteSelecionado = await clienteModel.selecionarPorId(id);

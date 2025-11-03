@@ -25,7 +25,6 @@ const clienteModel ={
         console.log(rows);
         return rows;
     },
-
     addCliente: async (cpfCliente, nomeCLiente) => {
         const sql = 'INSERT INTO clientes (nome_cliente, cpf_cliente) VALUES (?,?);';
         const values = [nomeCLiente, cpfCliente];
