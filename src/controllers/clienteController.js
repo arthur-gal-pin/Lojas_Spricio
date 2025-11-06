@@ -14,7 +14,7 @@ const clienteController = {
                 if (!Number.isInteger(id) || id<=0) {
                     return res.status(400).json({ message: "Forneça um identificador (id) válido." });
                 }
-                const resultado = await clienteModel.selecionarPorId(id);
+                const resultado = await clienteModel.selecionarTodos(id);
                 if (resultado.length === 0) {
                     return res.status(404).json({ message: "O ID em questão não possui cliente algum cadastrado." });
                 }
@@ -71,7 +71,7 @@ const clienteController = {
             if (!cpfCliente || cpfCliente.length != 11 || !String(nomeCliente) || nomeCliente.length < 3) {
                 return res.status(400).json({ message: "Valores para registro inválidos." });
             }
-            const clienteAtual = await clienteModel.selecionarPorId(idCliente);
+            const clienteAtual = await clienteModel.selecionarTodos(idCliente);
 
             if (!clienteAtual || clienteAtual.length === 0) {
                 throw new Error('Registro não localizado.');
@@ -100,7 +100,7 @@ const clienteController = {
             if (!id || id <= 0 || isNaN(id) || !Number.isInteger(id)) {
                 res.status(400).json({ message: "Você deve inserir um número inteiro para campo de ID." });
             }
-            const clienteSelecionado = await clienteModel.selecionarPorId(id);
+            const clienteSelecionado = await clienteModel.selecionarTodos(id);
 
             if (clienteSelecionado.length === 0) {
                 throw new Error("O ID em questão não possui cliente algum cadastrado.");
