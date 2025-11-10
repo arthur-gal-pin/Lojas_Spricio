@@ -55,7 +55,7 @@ const clienteController = {
                 const resultado = await clienteModel.addCliente(cpfCliente, nomeCliente);
                 return res.status(200).json({ message: "Registro Incluído com Sucesso.", result: resultado });
             } else {
-                throw new Error('Ocorreu um erro ao incluir o registro. O CPF inserido foi igual a um já cadastrado na base de dados.');
+                res.status(409).json({message: 'Ocorreu um erro ao incluir o registro. O CPF inserido foi igual a um já cadastrado na base de dados.'});
             }
 
         } catch (error) {
