@@ -3,7 +3,8 @@ const pool = require('../config/db');
 const clienteModel = {
     selecionarTodos: async (idCliente) => {
         const sql = idCliente ? 'SELECT * FROM clientes WHERE id_cliente=?;' : 'SELECT * FROM clientes;';
-        const [rows] = await pool.query(sql);
+        const values = [idCliente];
+        const [rows] = await pool.query(sql, values);
         return rows;
     },
     selecionarPorId: async (idCliente) => {

@@ -41,7 +41,7 @@ const produtoController = {
             }
             const resultado = await produtoModel.selecionarPorId(id);
             if (resultado.length === 0) {
-                throw new Error({ message: "O ID em questão não possui produto algum cadastrado." });
+                return res.status(404).json({ message: "O ID em questão não possui produto algum cadastrado." });
             }
             return res.status(200).json({ message: "Resultado dos dados listados", data: resultado });
         } catch (error) {
@@ -99,7 +99,7 @@ const produtoController = {
             }
 
             const novaDescricao = descricao.trim() ?? produtoAtual[0].descricao;
-            const novaValor = valor.trim() ?? produtoAtual[0].valor;
+            const novaValor = String(valor).trim() ?? produtoAtual[0].valor;
 
             const resultado = await produtoModel.alterarProduto(id, novaDescricao, novaValor);
 
