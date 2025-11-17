@@ -37,25 +37,11 @@ const produtoModel = {
      * ]
      */
     selecionarPorId: async (id) => {
-        const sql = 'SELECT * FROM produtos WHERE id_produto = ?;';
+        const sql = 'SELECT * FROM produtos WHERE idProduto = ?;';
         const values = [id];
         const [rows] = await pool.query(sql, values);
         return rows;
     },
-
-    /**
- * Seleciona um produto de acordo com o id_produto especificado
- * @async
- * @param {number} id Identificador que deve ser pesquisado no banco de dados.
- * @returns {Promise<Array<Object>>}
- * @example
- * const produto = await produtoModel.selecionarPorId(1);
- * console.log(produto);
- * //Saída Esperada
- * [
- *      {id_produto: 1, descricao: "Teclado", valor: 150.00}     
- * ]
- */
 
     /**
      * 
@@ -111,7 +97,7 @@ const produtoModel = {
         }
      */
     alterarProduto: async (pId, pDescricao, pValor) => {
-        const sql = 'UPDATE produtos SET descricao=?, valor=? WHERE id_produto=?;';
+        const sql = 'UPDATE produtos SET descricao=?, valor=? WHERE idProduto=?;';
         const values = [pDescricao, pValor, pId];
         const [rows] = await pool.query(sql, values);
         console.log(rows);
@@ -119,7 +105,7 @@ const produtoModel = {
     },
 
     deleteProduto: async (pId) => {
-        const sql = 'DELETE FROM produtos WHERE id_produto=?;';
+        const sql = 'DELETE FROM produtos WHERE idProduto=?;';
         const values = [pId];
         const [rows] = await pool.query(sql, values);
         console.log(rows);
